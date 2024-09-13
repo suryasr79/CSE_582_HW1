@@ -1,0 +1,23 @@
+jewelry.tsv file (len = 48,546; neg 12,561; pos 35,985)
+1. read in to a dataframe
+jewelry = pandas.read_csv('data/jewelry/jewelry3.tsv', sep = '\t')
+len(jewelry.index)
+48530
+2. drop duplicates
+jewelry.drop_duplicates(keep='last', inplace=True)
+len(jewelry)
+39538
+3. split into train/test
+>>>jewelrytrain=jewelry.sample(frac=0.8,random_state=200)
+>>>jewelrytest=jewelry.drop(jewelrytrain.index)
+>>>len(jewelrytrain)
+31630
+>>>len(jewelrytest)
+7908
+4. write to csv files
+>>>f = open('data/jewelry/jewelry_train.csv', "w")
+>>>jewelrytrain.to_csv(f, index=False, encoding='utf-8',header=false)
+>>>f.close()
+>>>g = open('data/jewelry/jewelry_test.csv', "w")
+>>>jewelrytest.to_csv(g, index=False, encoding='utf-8',header=false)
+>>>g.close()
